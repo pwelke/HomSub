@@ -39,7 +39,7 @@ std::vector<std::shared_ptr<TreeDecomposition>> TamakiRunner::decomposeAll(std::
     std::vector<std::shared_ptr<TreeDecomposition>> decomps;
 
     if (output.is_open()) {
-        for (size_t i = 0; i < graphs.size(); i++) {
+        for (std::size_t i = 0; i < graphs.size(); i++) {
             decomps.push_back(TreeDecomposition::parseTd(output));
         }
         output.close();

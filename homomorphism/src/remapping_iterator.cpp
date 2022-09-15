@@ -2,10 +2,10 @@
 
 #include <utility>
 
-RemappingIterator RemappingIterator::ExtractIterator(size_t n, size_t k, size_t pos) {
-    std::vector<size_t> offsets(k, 1);
+RemappingIterator RemappingIterator::ExtractIterator(std::size_t n, std::size_t k, std::size_t pos) {
+    std::vector<std::size_t> offsets(k, 1);
 
-    size_t offset = 1;
+    std::size_t offset = 1;
 
     for (int i = 0; i < k; ++i) {
         if(i == pos) {
@@ -19,10 +19,10 @@ RemappingIterator RemappingIterator::ExtractIterator(size_t n, size_t k, size_t 
     return RemappingIterator(n, k, offsets);
 }
 
-RemappingIterator RemappingIterator::InsertIterator(size_t n, size_t k, size_t pos) {
-    std::vector<size_t> offsets(k, 1);
+RemappingIterator RemappingIterator::InsertIterator(std::size_t n, std::size_t k, std::size_t pos) {
+    std::vector<std::size_t> offsets(k, 1);
 
-    size_t offset = pos == 0 ? n : 1;
+    std::size_t offset = pos == 0 ? n : 1;
 
     for (int i = 1; i < k; ++i) {
         offsets[i] = offset;
@@ -36,12 +36,12 @@ RemappingIterator RemappingIterator::InsertIterator(size_t n, size_t k, size_t p
     return RemappingIterator(n, k, offsets);
 }
 
-RemappingIterator RemappingIterator::CustomIterator(size_t n, size_t k, std::vector<size_t> offsets) {
+RemappingIterator RemappingIterator::CustomIterator(std::size_t n, std::size_t k, std::vector<std::size_t> offsets) {
     return RemappingIterator(n, k, std::move(offsets));
 }
 
-size_t RemappingIterator::next() {
-    size_t next = current_;
+std::size_t RemappingIterator::next() {
+    std::size_t next = current_;
 
     for (int i = 0; i < mapping_.size(); ++i)
     {

@@ -4,7 +4,7 @@
 
 std::shared_ptr<EdgeConsistencyPrecomputation> EdgeConsistencyPrecomputation::InitializeLeast(std::shared_ptr<Graph> gr, int maxEdges) {
     std::vector<std::vector<unsigned char>> storage;
-    size_t n = gr->vertCount();
+    std::size_t n = gr->vertCount();
 
     // AdjacencyMatrixGraph is preferred to simplify inner loop
     auto g = std::dynamic_pointer_cast<AdjacencyMatrixGraph>(gr);
@@ -37,7 +37,7 @@ std::shared_ptr<EdgeConsistencyPrecomputation> EdgeConsistencyPrecomputation::In
 
 std::shared_ptr<EdgeConsistencyPrecomputation> EdgeConsistencyPrecomputation::InitializeSecond(std::shared_ptr<Graph> g, int maxEdges) {
     std::vector<std::vector<unsigned char>> storage;
-    size_t n = g->vertCount();
+    std::size_t n = g->vertCount();
 
     storage.emplace_back(n, 1);
 
@@ -81,6 +81,6 @@ std::shared_ptr<EdgeConsistencyPrecomputation> EdgeConsistencyPrecomputation::In
     return std::make_shared<EdgeConsistencyPrecomputation>(storage);
 }
 
-std::vector<unsigned char>::iterator EdgeConsistencyPrecomputation::GetIterator(size_t edges) {
+std::vector<unsigned char>::iterator EdgeConsistencyPrecomputation::GetIterator(std::size_t edges) {
     return storage_[edges].begin();
 }

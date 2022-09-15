@@ -13,9 +13,9 @@ std::string Graph::toGraph6(bool includeG) {
     str << Graph6helper::N(vertCount());
     std::bitset<6> buffer;
     int idx = 6;
-    for (size_t u = 1; u < vertCount(); u++)
+    for (std::size_t u = 1; u < vertCount(); u++)
     {
-        for (size_t v = 0; v < u; v++)
+        for (std::size_t v = 0; v < u; v++)
         {
             buffer.set(--idx, edgeExist(u, v));
             if (!idx) {
@@ -41,9 +41,9 @@ std::string Graph::toGr()
     str << "p tw " << vertCount() << " " << edgeCount() << "\n";
     
     // Add edges in lexicographic order
-    for (size_t u = 0; u < vertCount() - 1; u++)
+    for (std::size_t u = 0; u < vertCount() - 1; u++)
     {
-        for (size_t v = u + 1; v < vertCount(); v++)
+        for (std::size_t v = u + 1; v < vertCount(); v++)
         {
             if (edgeExist(u, v)) {
                 str << u + 1 << " " << v + 1 << "\n";
@@ -64,9 +64,9 @@ std::string Graph::toString()
 void Graph::prettyPrint(std::ostream& os)
 {
     os << "Graph with " << vertCount() << " vertices and " << edgeCount() << " edges:\n";
-    for (size_t u = 0; u < vertCount(); u++) {
+    for (std::size_t u = 0; u < vertCount(); u++) {
         os << "[ ";
-        for (size_t v = 0; v < vertCount(); v++) {
+        for (std::size_t v = 0; v < vertCount(); v++) {
             os << edgeExist(u, v) << " ";
         }
         os << "]" << std::endl;
@@ -76,8 +76,8 @@ void Graph::prettyPrint(std::ostream& os)
 std::string Graph::toNautyFormat() {
     std::ostringstream str;
     
-    for (size_t u = 0; u < vertCount(); u++) {
-        for (size_t v = u + 1; v < vertCount(); v++) {
+    for (std::size_t u = 0; u < vertCount(); u++) {
+        for (std::size_t v = u + 1; v < vertCount(); v++) {
             if (edgeExist(u, v)) {
                 str << " " << v;
             }
@@ -88,17 +88,17 @@ std::string Graph::toNautyFormat() {
     return str.str();
 }
 
-std::string Graph::partitionNauty(std::set<size_t>* parts, size_t size) {
+std::string Graph::partitionNauty(std::set<std::size_t>* parts, std::size_t size) {
     std::ostringstream str;
 
     bool edgeFound;
-    std::set<size_t>::iterator uit, uend, vit, vend;
+    std::set<std::size_t>::iterator uit, uend, vit, vend;
 
-    for(size_t u = 0; u < size; u++)
+    for(std::size_t u = 0; u < size; u++)
     {
         uend = parts[u].end();
 
-        for (size_t v = u + 1; v < size; v++)
+        for (std::size_t v = u + 1; v < size; v++)
         {
             edgeFound = false;
             uit = parts[u].begin();

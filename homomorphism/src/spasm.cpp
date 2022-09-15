@@ -28,7 +28,7 @@ std::shared_ptr<Spasm> Spasm::fromFile(std::string path) {
 
 std::shared_ptr<Spasm> Spasm::createSpasm(std::shared_ptr<Graph> H, SpasmReducer& red) {
     std::unordered_map<std::string,int> graphs{ {H->toNautyFormat(), 1} };
-    std::set<size_t>* parts = new std::set<size_t>[H->vertCount()]{};
+    std::set<std::size_t>* parts = new std::set<std::size_t>[H->vertCount()]{};
 
     addPartitioningsRec(H, graphs, parts, 0, 0);
     delete[] parts;
@@ -59,11 +59,11 @@ std::vector<SpasmEntry> Spasm::joinIsomorphic(std::vector<SpasmEntry> graphs) {
     };
     sort(graphs.begin(), graphs.end(), lamb);
 
-    size_t sizev, sizee;
+    std::size_t sizev, sizee;
     int coef;
     std::shared_ptr<Graph> gi, gj;
 
-    for (size_t i = 0; i < graphs.size(); i++)
+    for (std::size_t i = 0; i < graphs.size(); i++)
     {        
         if (used[i]) continue;
 
@@ -72,7 +72,7 @@ std::vector<SpasmEntry> Spasm::joinIsomorphic(std::vector<SpasmEntry> graphs) {
         sizev = gi->vertCount();
         sizee = gi->edgeCount();
 
-        for (size_t j = i + 1; j < graphs.size(); j++)
+        for (std::size_t j = i + 1; j < graphs.size(); j++)
         {
             if (used[j]) continue;
             gj = graphs[j].graph;
@@ -93,7 +93,7 @@ std::vector<SpasmEntry> Spasm::joinIsomorphic(std::vector<SpasmEntry> graphs) {
 
 
 void Spasm::addPartitioningsRec(std::shared_ptr<Graph> H, std::unordered_map<std::string, int> &graphs,
-                                std::set<size_t> *parts, size_t next, size_t size) {
+                                std::set<std::size_t> *parts, std::size_t next, std::size_t size) {
     if (H->vertCount() == next) {
         if (H->vertCount() != size) {
             std::string quotient = H->partitionNauty(parts, size);
@@ -101,9 +101,9 @@ void Spasm::addPartitioningsRec(std::shared_ptr<Graph> H, std::unordered_map<std
             // product B in parts (|B| - 1)!
             // Sign is determined based on size of quotient graph
             int coef = (H->vertCount() - size) % 2 ? -1 : 1;
-            for (size_t i = 0; i < size; i++)
+            for (std::size_t i = 0; i < size; i++)
             {
-                size_t B = parts[i].size() - 1;
+                std::size_t B = parts[i].size() - 1;
                 while (1 < B) {
                     coef *= B;
                     B--;
@@ -118,9 +118,9 @@ void Spasm::addPartitioningsRec(std::shared_ptr<Graph> H, std::unordered_map<std
         return;
     }
 
-    for (size_t i = 0; i < size; i++)
+    for (std::size_t i = 0; i < size; i++)
     {
-        std::set<size_t>::iterator it = parts[i].begin();
+        std::set<std::size_t>::iterator it = parts[i].begin();
 
         bool isIndependent = true;
 
@@ -154,7 +154,7 @@ std::shared_ptr<Graph> Spasm::graph() {
     return g_;
 }
 
-size_t Spasm::size()
+std::size_t Spasm::size()
 {
     return graphs_.size();
 }
@@ -169,7 +169,7 @@ std::shared_ptr<Spasm> Spasm::deserialize(std::istream& input) {
         if (!std::getline(input, line)) return nullptr;
     } while (line[0] == 'c');
 
-    size_t size;
+    std::size_t size;
     if (!std::sscanf(line.c_str(), "sp %zd", &size)) return nullptr;
     std::vector<SpasmEntry> graphs;
 
@@ -179,7 +179,7 @@ std::shared_ptr<Spasm> Spasm::deserialize(std::istream& input) {
     getline(input, g6);
     std::shared_ptr<Graph> g = AdjacencyMatrixGraph::fromGraph6(g6, false);
 
-    for (size_t i = 0; i < size; i++)
+    for (std::size_t i = 0; i < size; i++)
     {
         getline(input, line);
 

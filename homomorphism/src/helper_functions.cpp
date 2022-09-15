@@ -25,12 +25,12 @@ bool HelperFunctions::saveToFile(const std::string& str, const std::string& file
 }
 
 
-std::string HelperFunctions::trimDreadnautOutput(std::ifstream& dread, size_t n)
+std::string HelperFunctions::trimDreadnautOutput(std::ifstream& dread, std::size_t n)
 {
     std::ostringstream out;
 
     std::istringstream line;
-    size_t v;
+    std::size_t v;
 
     std::string tmp;
 
@@ -38,7 +38,7 @@ std::string HelperFunctions::trimDreadnautOutput(std::ifstream& dread, size_t n)
         std::getline(dread, tmp);
     } while(!hasPrefix(tmp, "  0 :"));
 
-    for (size_t i = 0; i < n; i++)
+    for (std::size_t i = 0; i < n; i++)
     {
         line.clear();
         if(i) {
@@ -61,9 +61,9 @@ std::string HelperFunctions::trimDreadnautOutput(std::ifstream& dread, size_t n)
     return out.str();
 }
 
-size_t HelperFunctions::pow(size_t n, size_t k) {
-    size_t result = 1;
-    for (size_t i = 0; i < k; ++i) {
+std::size_t HelperFunctions::pow(std::size_t n, std::size_t k) {
+    std::size_t result = 1;
+    for (std::size_t i = 0; i < k; ++i) {
         result *= n;
     }
     return result;

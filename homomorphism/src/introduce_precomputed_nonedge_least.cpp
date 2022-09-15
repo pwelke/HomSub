@@ -4,8 +4,8 @@
 
 #include "homomorphism/introduce_mapping_iterator.h"
 
-std::vector<size_t>& IntroducePrecomputedNonedgeLeast::Introduce(std::vector<size_t> &input, std::vector<size_t> &output,
-        std::vector<unsigned char> &bag, size_t x, size_t idx) {
+std::vector<std::size_t>& IntroducePrecomputedNonedgeLeast::Introduce(std::vector<std::size_t> &input, std::vector<std::size_t> &output,
+        std::vector<unsigned char> &bag, std::size_t x, std::size_t idx) {
     if(input.size() == 1) {
         for(unsigned long & i : output) {
             i = input[0];
@@ -23,7 +23,7 @@ std::vector<size_t>& IntroducePrecomputedNonedgeLeast::Introduce(std::vector<siz
         throw;
     }
 
-    size_t edges = 0;
+    std::size_t edges = 0;
     for(auto & edge : bag) {
         if(edge) {
             edges++;

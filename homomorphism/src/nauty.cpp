@@ -80,7 +80,7 @@ std::vector<SpasmEntry> Nauty::joinIsomorphic(std::unordered_map<std::string, in
     if (output.is_open()) {
         // Update graphs with new canonical labelling
         for (auto &entry : entries) {
-            size_t n = std::count(entry.first.begin(), entry.first.end(), ';');
+            std::size_t n = std::count(entry.first.begin(), entry.first.end(), ';');
             spasm.push_back({HelperFunctions::trimDreadnautOutput(output, n), n, entry.second});
         }
     } else std::cout << "Unable to open file";

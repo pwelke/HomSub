@@ -10,7 +10,7 @@
 #include "homomorphism/graph6helper.h"
 #include "homomorphism/helper_functions.h"
 
-void AdjacencyMatrixGraph::clear(size_t v)
+void AdjacencyMatrixGraph::clear(std::size_t v)
 {
     vertices_ = v;
     edges_ = 0;
@@ -25,15 +25,15 @@ std::shared_ptr<AdjacencyMatrixGraph> AdjacencyMatrixGraph::fromGraph6(std::stri
         str >> input;
     }
 
-    size_t n = Graph6helper::readN(str);
+    std::size_t n = Graph6helper::readN(str);
 
     std::vector<unsigned char> matrix = std::vector<unsigned char>(n * n, 0);
 
-    size_t idx = 0, m = 0;
+    std::size_t idx = 0, m = 0;
 
-    for (size_t u = 1; u < n; u++)
+    for (std::size_t u = 1; u < n; u++)
     {
-        for (size_t v = 0; v < u; v++)
+        for (std::size_t v = 0; v < u; v++)
         {
             if (!idx) {
                 str >> input;
@@ -52,7 +52,7 @@ std::shared_ptr<AdjacencyMatrixGraph> AdjacencyMatrixGraph::fromGraph6(std::stri
     return std::make_shared<AdjacencyMatrixGraph>(n, m, matrix);
 }
 
-void AdjacencyMatrixGraph::addEdge(size_t u, size_t v) {
+void AdjacencyMatrixGraph::addEdge(std::size_t u, std::size_t v) {
     if (!matrix_[u * vertices_ + v]) edges_++;
     matrix_[u * vertices_ + v] = true;
     matrix_[v * vertices_ + u] = true;
@@ -64,11 +64,11 @@ std::shared_ptr<AdjacencyMatrixGraph> parseGr(std::ifstream& input) {
         if(!std::getline(input, line)) return nullptr;
     } while (line[0] == 'c');
     
-    size_t n, m;
+    std::size_t n, m;
     if (!std::sscanf(line.c_str(), "p tw %zd %zd", &n, &m)) return nullptr;
     std::shared_ptr <AdjacencyMatrixGraph> G = std::make_shared<AdjacencyMatrixGraph>(n);
 
-    size_t u, v;
+    std::size_t u, v;
     while (getline(input, line)) {
         if (line.empty() || line[0] == 'c') continue;
 
@@ -110,11 +110,11 @@ std::shared_ptr<AdjacencyMatrixGraph> AdjacencyMatrixGraph::testGraph()
     return g;
 }
 
-std::shared_ptr<AdjacencyMatrixGraph> AdjacencyMatrixGraph::parseNautyFormat(const std::string& nauty, size_t n)
+std::shared_ptr<AdjacencyMatrixGraph> AdjacencyMatrixGraph::parseNautyFormat(const std::string& nauty, std::size_t n)
 {
     std::shared_ptr<AdjacencyMatrixGraph> g = std::make_shared<AdjacencyMatrixGraph>(n);
 
-    size_t u = 0, v;
+    std::size_t u = 0, v;
 
     std::string tmp;
 
@@ -150,15 +150,15 @@ std::shared_ptr<AdjacencyMatrixGraph> AdjacencyMatrixGraph::FromGraph(std::share
     return g;
 }
 
-bool AdjacencyMatrixGraph::edgeExist(size_t u, size_t v)
+bool AdjacencyMatrixGraph::edgeExist(std::size_t u, std::size_t v)
 {
     return matrix_[u * vertices_ + v];
 }
 
-bool AdjacencyMatrixGraph::isIsomorphism(std::shared_ptr<Graph> g, size_t* permutation) {
-    for (size_t u = 1; u < vertices_; u++)
+bool AdjacencyMatrixGraph::isIsomorphism(std::shared_ptr<Graph> g, std::size_t* permutation) {
+    for (std::size_t u = 1; u < vertices_; u++)
     {
-        for (size_t v = 0; v < u; v++)
+        for (std::size_t v = 0; v < u; v++)
         {
             if (edgeExist(u, v) && !g->edgeExist(permutation[u], permutation[v])) {
                 return false;
@@ -173,9 +173,9 @@ bool AdjacencyMatrixGraph::isIsomorphic(std::shared_ptr<Graph> g)
 {
     if (vertices_ != g->vertCount() || edges_ != g->edgeCount()) return false;
     
-    size_t* perm = new size_t[vertices_];
+    std::size_t* perm = new std::size_t[vertices_];
 
-    for (size_t i = 0; i < vertices_; i++)
+    for (std::size_t i = 0; i < vertices_; i++)
     {
         perm[i] = i;
     }
@@ -191,27 +191,27 @@ bool AdjacencyMatrixGraph::isIsomorphic(std::shared_ptr<Graph> g)
     return false;
 }
 
-size_t AdjacencyMatrixGraph::vertCount()
+std::size_t AdjacencyMatrixGraph::vertCount()
 {
     return vertices_;
 }
 
-size_t AdjacencyMatrixGraph::edgeCount()
+std::size_t AdjacencyMatrixGraph::edgeCount()
 {
     return edges_;
 }
 
-std::shared_ptr<Graph> AdjacencyMatrixGraph::partition(std::set<size_t>* parts, size_t size) {
+std::shared_ptr<Graph> AdjacencyMatrixGraph::partition(std::set<std::size_t>* parts, std::size_t size) {
     std::shared_ptr<AdjacencyMatrixGraph> newGraph = std::make_shared<AdjacencyMatrixGraph>(size);
 
     bool edgeFound;
-    std::set<size_t>::iterator uit, uend, vit, vend;
+    std::set<std::size_t>::iterator uit, uend, vit, vend;
 
-    for(size_t u = 0; u < size; u++)
+    for(std::size_t u = 0; u < size; u++)
     {
         uend = parts[u].end();
         
-        for (size_t v = u + 1; v < size; v++)
+        for (std::size_t v = u + 1; v < size; v++)
         {
             edgeFound = false;
             uit = parts[u].begin();
@@ -239,9 +239,9 @@ std::shared_ptr<Graph> AdjacencyMatrixGraph::partition(std::set<size_t>* parts, 
     return newGraph;
 }
 
-std::unordered_set<size_t> AdjacencyMatrixGraph::getNeighbourhood(size_t v)
+std::unordered_set<std::size_t> AdjacencyMatrixGraph::getNeighbourhood(std::size_t v)
 {
-    std::unordered_set<size_t> neighbourhood;
+    std::unordered_set<std::size_t> neighbourhood;
     
     for(int i = 0; i < vertCount(); i++)
     {
@@ -253,6 +253,6 @@ std::unordered_set<size_t> AdjacencyMatrixGraph::getNeighbourhood(size_t v)
     return neighbourhood;
 }
 
-std::vector<unsigned char>::iterator AdjacencyMatrixGraph::GetRowIterator(size_t row) {
+std::vector<unsigned char>::iterator AdjacencyMatrixGraph::GetRowIterator(std::size_t row) {
     return matrix_.begin() + (row * vertices_);
 }

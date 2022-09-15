@@ -28,9 +28,9 @@ std::shared_ptr<SpasmDecomposition> SpasmDecomposition::decomposeSpasm(std::shar
 	TamakiRunner t;
 	
 	std::vector<SpasmDecompositionEntry> decomps(sp->size());
-	size_t width = 0;
+	std::size_t width = 0;
 	
-	for (size_t i = 0; i < sp->size(); i++)
+	for (std::size_t i = 0; i < sp->size(); i++)
 	{
 		auto next = (*sp)[i];
 
@@ -54,7 +54,7 @@ std::shared_ptr<SpasmDecomposition> SpasmDecomposition::decomposeSpasm(std::shar
 
     std::vector<std::shared_ptr<Graph>> graphs;
 
-    for(size_t i = 0; i < sp->size(); i++) {
+    for(std::size_t i = 0; i < sp->size(); i++) {
         graphs.push_back((*sp)[i].graph);
     }
 
@@ -67,9 +67,9 @@ std::shared_ptr<SpasmDecomposition> SpasmDecomposition::decomposeSpasm(std::shar
     }
 
     std::vector<SpasmDecompositionEntry> entries(sp->size());
-    size_t width = 0;
+    std::size_t width = 0;
 
-    for (size_t i = 0; i < sp->size(); i++)
+    for (std::size_t i = 0; i < sp->size(); i++)
     {
         auto old = (*sp)[i];
 
@@ -93,7 +93,7 @@ std::shared_ptr<SpasmDecomposition> SpasmDecomposition::deserialize(std::istream
 		if (!std::getline(input, line)) return nullptr;
 	} while (line[0] == 'c');
 
-	size_t size, n, m, w;
+	std::size_t size, n, m, w;
 	if (!std::sscanf(line.c_str(), "sp %zd %zd %zd %zd", &size, &n, &m, &w)) return nullptr;
 	std::vector<SpasmDecompositionEntry> graphs;
 
@@ -103,7 +103,7 @@ std::shared_ptr<SpasmDecomposition> SpasmDecomposition::deserialize(std::istream
     getline(input, g6);
     std::shared_ptr<Graph> g = AdjacencyMatrixGraph::fromGraph6(g6, false);
 
-	for (size_t i = 0; i < size; i++)
+	for (std::size_t i = 0; i < size; i++)
 	{
 		getline(input, line);
 
@@ -118,7 +118,7 @@ std::shared_ptr<SpasmDecomposition> SpasmDecomposition::deserialize(std::istream
 		graphs.push_back(spe);
 	}
 
-	for (size_t i = 0; i < size; i++)
+	for (std::size_t i = 0; i < size; i++)
 	{
 		graphs[i].decomposition = TreeDecomposition::parseTd(input);
 	}
@@ -157,7 +157,7 @@ std::string SpasmDecomposition::serialize() {
 	return str.str();
 }
 
-size_t SpasmDecomposition::size()
+std::size_t SpasmDecomposition::size()
 {
 	return graphDecomps_.size();
 }
@@ -170,6 +170,6 @@ SpasmDecompositionEntry& SpasmDecomposition::operator[](std::size_t position) {
 	return graphDecomps_[position];
 }
 
-size_t SpasmDecomposition::width() {
+std::size_t SpasmDecomposition::width() {
     return width_;
 }

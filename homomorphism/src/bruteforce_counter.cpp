@@ -1,6 +1,6 @@
 #include "homomorphism/bruteforce_counter.h"
 
-size_t BruteforceCounter::compute() {
+std::size_t BruteforceCounter::compute() {
 	int count = 0;
 
     int* mapping = new int[k_];
@@ -16,7 +16,7 @@ size_t BruteforceCounter::compute() {
 
 void BruteforceCounter::countRecursive(int* mapping, bool* used, int idx, int& count) {
     if (idx < k_) {
-        for (size_t i = 0; i < n_; i++)
+        for (std::size_t i = 0; i < n_; i++)
         {
             if (!used[i]) {
                 used[i] = true;
@@ -32,8 +32,8 @@ void BruteforceCounter::countRecursive(int* mapping, bool* used, int idx, int& c
 }
 
 bool BruteforceCounter::checkIsEmbedding(int* mapping) {  
-    for (size_t u = 1; u < k_; u++) {
-        for (size_t v = 0; v < u; v++) {
+    for (std::size_t u = 1; u < k_; u++) {
+        for (std::size_t v = 0; v < u; v++) {
             if (h_->edgeExist(u, v) && !g_->edgeExist(mapping[u], mapping[v])) {
                 return false;
             }

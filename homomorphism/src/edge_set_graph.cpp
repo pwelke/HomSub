@@ -7,26 +7,26 @@
 #include "homomorphism/graph6helper.h"
 #include "homomorphism/helper_functions.h"
 
-void EdgeSetGraph::clear(size_t v)
+void EdgeSetGraph::clear(std::size_t v)
 {
     verts_ = v;
     edges_ = v;
-    std::vector<std::unordered_set<size_t>> nei;
+    std::vector<std::unordered_set<std::size_t>> nei;
     nei.resize(v);
     neighbours_ = nei;
 }
 
-size_t EdgeSetGraph::vertCount()
+std::size_t EdgeSetGraph::vertCount()
 {
     return verts_;
 }
 
-size_t EdgeSetGraph::edgeCount()
+std::size_t EdgeSetGraph::edgeCount()
 {
     return edges_;
 }
 
-void EdgeSetGraph::addEdge(size_t u, size_t v)
+void EdgeSetGraph::addEdge(std::size_t u, std::size_t v)
 {
     int oldSize = neighbours_[u].size();
     neighbours_[u].insert(v);
@@ -37,7 +37,7 @@ void EdgeSetGraph::addEdge(size_t u, size_t v)
     }
 }
 
-bool EdgeSetGraph::edgeExist(size_t u, size_t v)
+bool EdgeSetGraph::edgeExist(std::size_t u, std::size_t v)
 {
     return neighbours_[u].count(v) || neighbours_[v].count(u);
 }
@@ -47,17 +47,17 @@ bool EdgeSetGraph::isIsomorphic(std::shared_ptr<Graph> g)
     return false;
 }
 
-std::shared_ptr<Graph> EdgeSetGraph::partition(std::set<size_t>* parts, size_t size)
+std::shared_ptr<Graph> EdgeSetGraph::partition(std::set<std::size_t>* parts, std::size_t size)
 {
     return nullptr;
 }
 
-std::unordered_set<size_t> EdgeSetGraph::getNeighbourhood(size_t v)
+std::unordered_set<std::size_t> EdgeSetGraph::getNeighbourhood(std::size_t v)
 {
     return neighbours_[v];
 }
 
-std::vector<std::unordered_set<size_t>> EdgeSetGraph::getNeighbourList()
+std::vector<std::unordered_set<std::size_t>> EdgeSetGraph::getNeighbourList()
 {
     return neighbours_;
 }
@@ -79,11 +79,11 @@ std::shared_ptr<EdgeSetGraph> EdgeSetGraph::parseGr(std::ifstream& input) {
         if(!std::getline(input, line)) return nullptr;
     } while (line[0] == 'c');
     
-    size_t n, m;
+    std::size_t n, m;
     if (!std::sscanf(line.c_str(), "p tw %zd %zd", &n, &m)) return nullptr;
     std::shared_ptr <EdgeSetGraph> G = std::make_shared<EdgeSetGraph>(n);
 
-    size_t u, v;
+    std::size_t u, v;
     while (getline(input, line)) {
         if (line.empty() || line[0] == 'c') continue;
 

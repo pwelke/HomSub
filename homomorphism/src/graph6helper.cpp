@@ -2,11 +2,11 @@
 
 #include <sstream>
 
-char Graph6helper::R(size_t x) {
+char Graph6helper::R(std::size_t x) {
 	return (char) (x & 0x3F) + 63;
 }
 
-std::string Graph6helper::N(size_t x) {
+std::string Graph6helper::N(std::size_t x) {
 	std::ostringstream str;
 	if (x <= 62) {
 		str << (char) (x + 63);
@@ -21,7 +21,7 @@ std::string Graph6helper::N(size_t x) {
 	return str.str();
 }
 
-size_t Graph6helper::readN(std::stringstream& in) {
+std::size_t Graph6helper::readN(std::stringstream& in) {
 	unsigned char c;
 	in >> c;
 	if (c != 126) {
@@ -30,7 +30,7 @@ size_t Graph6helper::readN(std::stringstream& in) {
 	} 
 
 	in >> c;
-	size_t size, out = 0;
+	std::size_t size, out = 0;
 	if (c != 126) {
 		// 63 <= n <= 258047
 		out = c - 63; 
@@ -42,7 +42,7 @@ size_t Graph6helper::readN(std::stringstream& in) {
 	}
 	
 	// Read the remaining values
-	for (size_t i = 0; i < size; i++)
+	for (std::size_t i = 0; i < size; i++)
 	{
 		out <<= 6;
 		in >> c;

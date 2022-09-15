@@ -3,7 +3,7 @@
 #include <algorithm>
 
 long PathdecompositionCounter::compute() {
-    DPState state = { std::vector<size_t>(0), new std::vector<size_t> {1} };
+    DPState state = { std::vector<std::size_t>(0), new std::vector<std::size_t> {1} };
 
     for(auto & node : pdc_->decomposition_) {
         if(node.introduce) {
@@ -13,9 +13,9 @@ long PathdecompositionCounter::compute() {
         }
     }
 
-    size_t count = 0;
+    std::size_t count = 0;
 
-    for (size_t c : *state.mappings)
+    for (std::size_t c : *state.mappings)
     {
         count += c;
     }
@@ -25,10 +25,10 @@ long PathdecompositionCounter::compute() {
     return count;
 }
 
-DPState PathdecompositionCounter::Introduce(DPState &state, size_t v) {
+DPState PathdecompositionCounter::Introduce(DPState &state, std::size_t v) {
     auto bag = state.bag;
 
-    std::vector<size_t>* mapping = allocator_->Allocate(bag.size() + 1);
+    std::vector<std::size_t>* mapping = allocator_->Allocate(bag.size() + 1);
     introducer_->introduceLast(*state.mappings, *mapping, bag, h_, g_, n_, v);
     allocator_->Free(state.mappings, bag.size());
 
@@ -37,12 +37,12 @@ DPState PathdecompositionCounter::Introduce(DPState &state, size_t v) {
     return {bag, mapping};
 }
 
-DPState PathdecompositionCounter::Forget(DPState &state, size_t v) {
+DPState PathdecompositionCounter::Forget(DPState &state, std::size_t v) {
     auto bag = state.bag;
 
     auto pos = std::find(bag.begin(), bag.end(), v) - bag.begin();
 
-    std::vector<size_t>* mapping = allocator_->Allocate(bag.size() - 1);
+    std::vector<std::size_t>* mapping = allocator_->Allocate(bag.size() - 1);
     forgetter_->forget(*state.mappings, *mapping, bag.size(), pos);
     allocator_->Free(state.mappings, bag.size());
 

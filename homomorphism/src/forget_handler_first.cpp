@@ -2,21 +2,21 @@
 
 #include <iostream>
 
-std::vector<size_t>& ForgetHandlerFirst::forget(std::vector<size_t>& input, std::vector<size_t>& output,
-                                                    size_t b, size_t idx) {
+std::vector<std::size_t>& ForgetHandlerFirst::forget(std::vector<std::size_t>& input, std::vector<std::size_t>& output,
+                                                    std::size_t b, std::size_t idx) {
     if(idx !=  b - 1) {
         std::cerr << "ERROR: ForgetHandlerFirst called with index " << idx << std::endl;
         throw;
     }
 
-    for(size_t i = 0; i < output.size(); i++) {
+    for(std::size_t i = 0; i < output.size(); i++) {
         output[i] = input[i];
     }
 
-    size_t offset = output.size();
+    std::size_t offset = output.size();
 
     for(int i = 1; i < size_.n; i++) {
-        for (size_t idx = 0; idx < output.size(); idx++) {
+        for (std::size_t idx = 0; idx < output.size(); idx++) {
             output[idx] += input[offset + idx];
         }
         offset += output.size();

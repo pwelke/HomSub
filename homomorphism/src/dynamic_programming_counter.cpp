@@ -3,9 +3,9 @@
 long DynamicProgrammingCounter::compute() {
     DPState res = computeRec(tdc_->getRoot());
 
-    size_t count = 0;
+    std::size_t count = 0;
 
-    for (size_t c : *res.mappings)
+    for (std::size_t c : *res.mappings)
     {
         count += c;
     }
@@ -28,20 +28,20 @@ DPState DynamicProgrammingCounter::computeRec(const std::shared_ptr<NTDNode>& no
         case JOIN:
             return computeJoinRec(node->left, node->right);
         default:
-            return { std::vector<size_t>(0), new std::vector<size_t> {1} };
+            return { std::vector<std::size_t>(0), new std::vector<std::size_t> {1} };
     }
 }
 
-DPState DynamicProgrammingCounter::computeIntroduceRec(const std::shared_ptr<NTDNode>& child, size_t x) {
+DPState DynamicProgrammingCounter::computeIntroduceRec(const std::shared_ptr<NTDNode>& child, std::size_t x) {
     // Currently indices are 1-indexes for the tree decomposition and 0-indexes for the algorithm
     x--;
 
     DPState c = computeRec(child);
 
-    std::vector<size_t> bag = c.bag;
+    std::vector<std::size_t> bag = c.bag;
 
     // TODO: Could be precomputed for cleaner code
-    size_t pos;
+    std::size_t pos;
     for(pos = 0; pos < bag.size(); pos++) {
         if(bag[pos] > x) {
             break;
@@ -57,7 +57,7 @@ DPState DynamicProgrammingCounter::computeIntroduceRec(const std::shared_ptr<NTD
     }
 
     // Introduce the last vertex
-    std::vector<size_t>* result = allocator_->Allocate(bag.size() + 1);
+    std::vector<std::size_t>* result = allocator_->Allocate(bag.size() + 1);
     introducer_->Introduce(*c.mappings, *result, connected, x, pos);
     allocator_->Free(c.mappings, bag.size());
 
@@ -66,22 +66,22 @@ DPState DynamicProgrammingCounter::computeIntroduceRec(const std::shared_ptr<NTD
     return { bag, result };
 }
 
-DPState DynamicProgrammingCounter::computeForgetRec(const std::shared_ptr<NTDNode>& child, size_t x) {
+DPState DynamicProgrammingCounter::computeForgetRec(const std::shared_ptr<NTDNode>& child, std::size_t x) {
     x--;
 
     DPState c = computeRec(child);
 
-    std::vector<size_t> bag = c.bag;
+    std::vector<std::size_t> bag = c.bag;
 
     // TODO: Could be precomputed for cleaner code
-    size_t pos;
+    std::size_t pos;
     for(pos = 0; pos < bag.size(); pos++) {
         if(bag[pos] == x) {
             break;
         }
     }
     // Forget the last vertex
-    std::vector<size_t>* result = allocator_->Allocate(bag.size() - 1);
+    std::vector<std::size_t>* result = allocator_->Allocate(bag.size() - 1);
     forgetter_->forget(*c.mappings, *result, bag.size(), pos);
     allocator_->Free(c.mappings, bag.size());
 

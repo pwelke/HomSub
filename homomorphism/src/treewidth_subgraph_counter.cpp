@@ -22,7 +22,7 @@ long TreewidthSubgraphCounter::compute() {
             ConfigurationFactory::DefaultPrecomputedSettings(g_->vertCount(), spdc_->width(), pre1, pre2) :
             ConfigurationFactory::NonpoolingPrecomputedSettings(g_->vertCount(), spdc_->width(), pre1, pre2);
 
-    for (size_t i = 0; i < spdc_->size(); i++)
+    for (std::size_t i = 0; i < spdc_->size(); i++)
     {
         auto next = (*spdc_)[i];
         if(next.decomposition->IsPathDecomposition()) {
@@ -64,7 +64,7 @@ long TreewidthSubgraphCounter::computeParallel(int threadCount) {
     std::vector<std::tuple<int, long, std::shared_ptr<HomomorphismCounterInterface>>> computations;
 
     //Setup all computatoins
-    for (size_t i = 0; i < spdc_->size(); i++)
+    for (std::size_t i = 0; i < spdc_->size(); i++)
     {
         auto next = (*spdc_)[i];
         if(next.decomposition->IsPathDecomposition()) {

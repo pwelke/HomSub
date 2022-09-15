@@ -5,9 +5,9 @@
 
 std::shared_ptr<NiceTreeDecomposition> NiceTreeDecomposition::FromTd(std::shared_ptr<TreeDecomposition> td)
 {
-    size_t root = 0;
+    std::size_t root = 0;
     // Find start vertex
-    for(size_t i = 0; i < td->getGraph()->vertCount(); i++) {
+    for(std::size_t i = 0; i < td->getGraph()->vertCount(); i++) {
         if(td->getGraph()->getNeighbourList()[i].size() == 1) {
             root = i;
             break;
@@ -16,26 +16,26 @@ std::shared_ptr<NiceTreeDecomposition> NiceTreeDecomposition::FromTd(std::shared
     return std::make_shared<NiceTreeDecomposition>(convertNode(-1, root, td), td->getGraph(), td->getWidth());
 }
 
-std::shared_ptr<NTDNode> NiceTreeDecomposition::convertNode(size_t from, size_t node, std::shared_ptr<TreeDecomposition> td)
+std::shared_ptr<NTDNode> NiceTreeDecomposition::convertNode(std::size_t from, std::size_t node, std::shared_ptr<TreeDecomposition> td)
 {
-    std::unordered_set<size_t> children = td->getGraph()->getNeighbourhood(node);
+    std::unordered_set<std::size_t> children = td->getGraph()->getNeighbourhood(node);
     children.erase(from);
     
     if(children.size() == 0) {
         std::shared_ptr<NTDNode> current = createLeaf();
         //Introduce verts of bag
-        for( size_t v : td->getBag(node)) {
+        for( std::size_t v : td->getBag(node)) {
             current = createIntroduce(current, v);
         }
         
         return current;
     } else if (children.size() == 1) {
-        size_t child = *children.begin();
+        std::size_t child = *children.begin();
         std::shared_ptr<NTDNode> childNode = convertNode(node, child, td);
         return connectToChild(childNode, td->getBag(child), td->getBag(node));
     } else {
-        std::unordered_set<size_t>::iterator it = children.begin();
-        size_t firstChild = *it;
+        std::unordered_set<std::size_t>::iterator it = children.begin();
+        std::size_t firstChild = *it;
         it++;
         
         std::shared_ptr<NTDNode> currentChildNode = convertNode(node, firstChild, td);
@@ -52,12 +52,12 @@ std::shared_ptr<NTDNode> NiceTreeDecomposition::convertNode(size_t from, size_t 
     }
 }
 
-std::shared_ptr<NTDNode> NiceTreeDecomposition::connectToChild(std::shared_ptr<NTDNode> childNode, std::unordered_set<size_t> childBag, std::unordered_set<size_t> parentBag)
+std::shared_ptr<NTDNode> NiceTreeDecomposition::connectToChild(std::shared_ptr<NTDNode> childNode, std::unordered_set<std::size_t> childBag, std::unordered_set<std::size_t> parentBag)
 {
     std::shared_ptr<NTDNode> current = childNode;
     
     //Create forget node for each missing vert in parent
-    for(size_t v : childBag) {
+    for(std::size_t v : childBag) {
         if(parentBag.find(v) == parentBag.end()) {
             
             current = createForget(current, v);
@@ -65,7 +65,7 @@ std::shared_ptr<NTDNode> NiceTreeDecomposition::connectToChild(std::shared_ptr<N
     }
     
     //Create introduce node for each missing vert in child
-    for(size_t v : parentBag) {
+    for(std::size_t v : parentBag) {
         if(childBag.find(v) == childBag.end()) {
             current = createIntroduce(current, v);
         }
@@ -81,7 +81,7 @@ std::shared_ptr<NTDNode> NiceTreeDecomposition::createLeaf()
     return leaf;
 }
 
-std::shared_ptr<NTDNode> NiceTreeDecomposition::createIntroduce(std::shared_ptr<NTDNode> child, size_t vert)
+std::shared_ptr<NTDNode> NiceTreeDecomposition::createIntroduce(std::shared_ptr<NTDNode> child, std::size_t vert)
 {
     std::shared_ptr<NTDNode> introduce = std::make_shared<NTDNode>();
     introduce->nodeType = NTDNodeType::INTRODUCE;
@@ -91,7 +91,7 @@ std::shared_ptr<NTDNode> NiceTreeDecomposition::createIntroduce(std::shared_ptr<
     return introduce;
 }
 
-std::shared_ptr<NTDNode> NiceTreeDecomposition::createForget(std::shared_ptr<NTDNode> child, size_t vert)
+std::shared_ptr<NTDNode> NiceTreeDecomposition::createForget(std::shared_ptr<NTDNode> child, std::size_t vert)
 {
     std::shared_ptr<NTDNode> forget = std::make_shared<NTDNode>();
     forget->nodeType = NTDNodeType::FORGET;
@@ -141,7 +141,7 @@ std::shared_ptr<NTDNode> NiceTreeDecomposition::getRoot()
     return root_;
 }
 
-size_t NiceTreeDecomposition::getWidth()
+std::size_t NiceTreeDecomposition::getWidth()
 {
     return width_;
 }

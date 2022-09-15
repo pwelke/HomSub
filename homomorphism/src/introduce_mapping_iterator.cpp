@@ -1,9 +1,9 @@
 #include "homomorphism/introduce_mapping_iterator.h"
 
-IntroduceMappingIterator IntroduceMappingIterator::InitializeLeast(size_t n, size_t k, std::vector<unsigned char> edges) {
-    std::vector<size_t> offsets(k, 0);
+IntroduceMappingIterator IntroduceMappingIterator::InitializeLeast(std::size_t n, std::size_t k, std::vector<unsigned char> edges) {
+    std::vector<std::size_t> offsets(k, 0);
 
-    size_t offset = 1;
+    std::size_t offset = 1;
 
     for (int i = 0; i < k; ++i) {
         if(edges[i]) {
@@ -15,10 +15,10 @@ IntroduceMappingIterator IntroduceMappingIterator::InitializeLeast(size_t n, siz
     return IntroduceMappingIterator(n, k, offsets);
 }
 
-IntroduceMappingIterator IntroduceMappingIterator::InitializeSecond(size_t n, size_t k, std::vector<unsigned char> edges) {
-    std::vector<size_t> offsets(k, 0);
+IntroduceMappingIterator IntroduceMappingIterator::InitializeSecond(std::size_t n, std::size_t k, std::vector<unsigned char> edges) {
+    std::vector<std::size_t> offsets(k, 0);
 
-    size_t offset = 1;
+    std::size_t offset = 1;
 
     for (int i = 0; i < k; ++i) {
         if(edges[i]) {
@@ -33,10 +33,10 @@ IntroduceMappingIterator IntroduceMappingIterator::InitializeSecond(size_t n, si
     return IntroduceMappingIterator(n, k, offsets);
 }
 
-IntroduceMappingIterator IntroduceMappingIterator::InitializeInputIterator(size_t n, size_t k, size_t pos) {
-    std::vector<size_t> offsets(k, 0);
+IntroduceMappingIterator IntroduceMappingIterator::InitializeInputIterator(std::size_t n, std::size_t k, std::size_t pos) {
+    std::vector<std::size_t> offsets(k, 0);
 
-    size_t offset = n;
+    std::size_t offset = n;
 
     for (int i = 0; i < k; ++i) {
         if(i != pos) {
@@ -48,10 +48,10 @@ IntroduceMappingIterator IntroduceMappingIterator::InitializeInputIterator(size_
     return IntroduceMappingIterator(n, k, offsets);
 }
 
-IntroduceMappingIterator IntroduceMappingIterator::InitializePrecomputedSecond(size_t n, std::vector<unsigned char> edges, size_t pos) {
-    std::vector<size_t> offsets(edges.size(), 0);
+IntroduceMappingIterator IntroduceMappingIterator::InitializePrecomputedSecond(std::size_t n, std::vector<unsigned char> edges, std::size_t pos) {
+    std::vector<std::size_t> offsets(edges.size(), 0);
 
-    size_t offset = n * n;
+    std::size_t offset = n * n;
     auto edge = edges.begin() + 1;
 
     for (int i = 0; i < edges.size(); ++i) {
@@ -66,10 +66,10 @@ IntroduceMappingIterator IntroduceMappingIterator::InitializePrecomputedSecond(s
     return IntroduceMappingIterator(n, edges.size(), offsets);
 }
 
-IntroduceMappingIterator IntroduceMappingIterator::InitializePrecomputedNonedge(size_t n, std::vector<unsigned char> edges, size_t pos) {
-    std::vector<size_t> offsets(edges.size(), 0);
+IntroduceMappingIterator IntroduceMappingIterator::InitializePrecomputedNonedge(std::size_t n, std::vector<unsigned char> edges, std::size_t pos) {
+    std::vector<std::size_t> offsets(edges.size(), 0);
 
-    size_t offset = n;
+    std::size_t offset = n;
     auto edge = edges.begin() + 1;
 
     for (int i = 0; i < edges.size(); ++i) {
@@ -84,12 +84,12 @@ IntroduceMappingIterator IntroduceMappingIterator::InitializePrecomputedNonedge(
     return IntroduceMappingIterator(n, edges.size(), offsets);
 }
 
-size_t IntroduceMappingIterator::CurrentOffset() {
+std::size_t IntroduceMappingIterator::CurrentOffset() {
     return current_;
 }
 
 bool IntroduceMappingIterator::NextChanged() {
-    size_t prev = current_;
+    std::size_t prev = current_;
 
     for (int i = 0; i < mapping_.size(); ++i)
     {
