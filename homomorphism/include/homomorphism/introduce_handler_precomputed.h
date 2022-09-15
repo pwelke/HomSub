@@ -9,14 +9,14 @@
 
 class IntroduceHandlerPrecomputed : public IntroduceHandler {
 public:
-    IntroduceHandlerPrecomputed(size_t n, size_t k,
+    IntroduceHandlerPrecomputed(std::size_t n, std::size_t k,
             const std::shared_ptr<EdgeConsistencyPrecomputation>& precomputedLeast,
             const std::shared_ptr<EdgeConsistencyPrecomputation>& precomputedSecond)
                 : IntroduceHandler(n, k), least_(IntroducePrecomputedLeast(n, k, precomputedLeast)),
                 edge_(IntroducePrecomputedEdgeLeast(n, k, precomputedSecond)),
                 nonedge_(IntroducePrecomputedNonedgeLeast(n, k, precomputedLeast)) { }
-    std::vector<size_t>& Introduce(std::vector<size_t> &input, std::vector<size_t> &output,
-                                           std::vector<unsigned char>& bag, size_t x, size_t idx) override;
+    std::vector<std::size_t>& Introduce(std::vector<std::size_t> &input, std::vector<std::size_t> &output,
+                                           std::vector<unsigned char>& bag, std::size_t x, std::size_t idx) override;
 private:
     IntroducePrecomputedEdgeLeast edge_;
     IntroducePrecomputedNonedgeLeast nonedge_;

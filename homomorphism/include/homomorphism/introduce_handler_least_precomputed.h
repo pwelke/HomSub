@@ -11,9 +11,9 @@ class IntroduceHandlerLeastPrecomputed : public IntroduceHandlerLeast {
 public:
     IntroduceHandlerLeastPrecomputed(std::shared_ptr<EdgeConsistencyPrecomputation> precomputed):
                                     precomputed_(std::move(precomputed)) {};
-    std::vector<size_t>& introduceLast(std::vector <size_t> &input, std::vector <size_t> &output,
-                                       std::vector <size_t>& bag, std::shared_ptr<Graph> h,
-                                       std::shared_ptr<Graph> g, size_t n, size_t x) override;
+    std::vector<std::size_t>& introduceLast(std::vector <std::size_t> &input, std::vector <std::size_t> &output,
+                                       std::vector <std::size_t>& bag, std::shared_ptr<Graph> h,
+                                       std::shared_ptr<Graph> g, std::size_t n, std::size_t x) override;
 private:
     std::shared_ptr<EdgeConsistencyPrecomputation> precomputed_;
 };

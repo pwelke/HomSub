@@ -7,9 +7,9 @@
 
 class ForgetHandlerCombined : public ForgetHandler {
 public:
-    ForgetHandlerCombined(size_t n, size_t k) : ForgetHandler(n, k), any_(ForgetHandlerAny(n, k)),
+    ForgetHandlerCombined(std::size_t n, std::size_t k) : ForgetHandler(n, k), any_(ForgetHandlerAny(n, k)),
                     last_(ForgetHandlerFirst(n, k)), first_(ForgetHandlerLast(n, k)) {}
-    std::vector<size_t>& forget(std::vector<size_t>& input, std::vector<size_t>& output, size_t b, size_t idx) override;
+    std::vector<std::size_t>& forget(std::vector<std::size_t>& input, std::vector<std::size_t>& output, std::size_t b, std::size_t idx) override;
 private:
     ForgetHandlerAny any_;
     ForgetHandlerLast first_;

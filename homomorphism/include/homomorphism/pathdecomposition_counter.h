@@ -26,13 +26,13 @@ public:
 private:
     std::shared_ptr<Graph> h_, g_;
     std::shared_ptr<NicePathDecomposition> pdc_;
-    size_t n_;
+    std::size_t n_;
     std::shared_ptr<ForgetHandler> forgetter_;
     std::shared_ptr<IntroduceHandlerLeast> introducer_;
     std::shared_ptr<VectorAllocator> allocator_;
 
-    DPState Introduce(DPState& state, size_t v);
-    DPState Forget(DPState& state, size_t v);
+    DPState Introduce(DPState& state, std::size_t v);
+    DPState Forget(DPState& state, std::size_t v);
 };
 
 #endif

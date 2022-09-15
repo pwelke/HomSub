@@ -5,12 +5,12 @@
 
 class CalculationRemapper : public Remapper {
 public:
-    void SetSizes(size_t n, size_t b) override;
-    void Extract(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos) override;
-    void Insert(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos) override;
+    void SetSizes(std::size_t n, std::size_t b) override;
+    void Extract(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos) override;
+    void Insert(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos) override;
 private:
-    size_t n_, b_;
-    std::vector<size_t> powers_;
+    std::size_t n_, b_;
+    std::vector<std::size_t> powers_;
 };
 
 #endif

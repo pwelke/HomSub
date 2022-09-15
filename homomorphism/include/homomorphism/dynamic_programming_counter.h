@@ -32,15 +32,15 @@ public:
 private:
     std::shared_ptr<Graph> h_, g_;
     std::shared_ptr<NiceTreeDecomposition> tdc_;
-    size_t n_;
+    std::size_t n_;
     std::shared_ptr<ForgetHandler> forgetter_;
     std::shared_ptr<IntroduceHandler> introducer_;
     std::shared_ptr<JoinHandler> joiner_;
     std::shared_ptr<VectorAllocator> allocator_;
 
     DPState computeRec(const std::shared_ptr<NTDNode>& node);
-    DPState computeIntroduceRec(const std::shared_ptr<NTDNode>& child, size_t x);
-    DPState computeForgetRec(const std::shared_ptr<NTDNode>& child, size_t x);
+    DPState computeIntroduceRec(const std::shared_ptr<NTDNode>& child, std::size_t x);
+    DPState computeForgetRec(const std::shared_ptr<NTDNode>& child, std::size_t x);
     DPState computeJoinRec(const std::shared_ptr<NTDNode>& child1, const std::shared_ptr<NTDNode>& child2);
 };
 

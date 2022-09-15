@@ -7,7 +7,7 @@
 class JoinHandler {
 public:
     // The first vector might be overridden to store the output
-    std::vector<size_t>& join(std::vector<size_t>& first, std::vector<size_t>& second);
+    std::vector<std::size_t>& join(std::vector<std::size_t>& first, std::vector<std::size_t>& second);
 };
 
 #endif

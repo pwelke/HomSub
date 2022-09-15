@@ -7,22 +7,22 @@
 
 struct NPDNode {
     bool introduce;
-    size_t vertex;
-    //size_t index;
-    //std::vector<size_t> bag;
+    std::size_t vertex;
+    //std::size_t index;
+    //std::vector<std::size_t> bag;
 };
 
 class NicePathDecomposition
 {
 public:
-    NicePathDecomposition(std::vector<NPDNode> decomp, size_t width) :
+    NicePathDecomposition(std::vector<NPDNode> decomp, std::size_t width) :
         decomposition_(std::move(decomp)), width_(width) {};
     static std::shared_ptr<NicePathDecomposition> FromTd(std::shared_ptr<TreeDecomposition> td);
-    size_t getWidth();
+    std::size_t getWidth();
 
     std::vector<NPDNode> decomposition_;
 private:
-    size_t width_;
+    std::size_t width_;
 };
 
 

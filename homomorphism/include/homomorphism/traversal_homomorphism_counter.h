@@ -13,15 +13,15 @@ class TraversalHomomorphismCounter {
  private:
     static bool CheckHomomorphism(std::shared_ptr<EdgeSetGraph> h,
                                   std::shared_ptr<EdgeSetGraph> g,
-                                  std::vector<size_t> hTraversal,
-                                  std::vector<size_t> gTraversal);
+                                  std::vector<std::size_t> hTraversal,
+                                  std::vector<std::size_t> gTraversal);
     static int64_t TestKTraversals(std::shared_ptr<EdgeSetGraph> h,
                                    std::shared_ptr<EdgeSetGraph> g,
-                                   std::vector<size_t> hTraversal,
-                                   std::vector<size_t> gTraversal);
-    static std::vector<size_t> GetFirstTraversal(std::shared_ptr<EdgeSetGraph> g);
-    static std::unordered_set<size_t> GetOpenNeighbourhood(std::shared_ptr<EdgeSetGraph> g,
-                                                           std::vector<size_t> verts);
+                                   std::vector<std::size_t> hTraversal,
+                                   std::vector<std::size_t> gTraversal);
+    static std::vector<std::size_t> GetFirstTraversal(std::shared_ptr<EdgeSetGraph> g);
+    static std::unordered_set<std::size_t> GetOpenNeighbourhood(std::shared_ptr<EdgeSetGraph> g,
+                                                           std::vector<std::size_t> verts);
 };
 
 

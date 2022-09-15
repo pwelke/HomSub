@@ -6,14 +6,14 @@
 class MappingIterator
 {
 public:
-    MappingIterator(int n, int k) : mapping(std::vector<size_t>(k, 0)), n_(n) {}
+    MappingIterator(int n, int k) : mapping(std::vector<std::size_t>(k, 0)), n_(n) {}
 
-    std::vector<size_t> mapping;
-    size_t idx = 0;
+    std::vector<std::size_t> mapping;
+    std::size_t idx = 0;
 
     void Increment();
 private:
-    size_t n_;
+    std::size_t n_;
 };
 
 

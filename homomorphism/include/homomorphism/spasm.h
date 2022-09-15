@@ -29,7 +29,7 @@ private:
     std::vector<SpasmEntry> graphs_;
     std::shared_ptr<Graph> g_;
 
-    static void addPartitioningsRec(std::shared_ptr<Graph> H, std::unordered_map<std::string, int>& graphs, std::set<size_t>* parts, size_t next, size_t size);
+    static void addPartitioningsRec(std::shared_ptr<Graph> H, std::unordered_map<std::string, int>& graphs, std::set<std::size_t>* parts, std::size_t next, std::size_t size);
     static std::vector<SpasmEntry> joinIsomorphic(std::vector<SpasmEntry> graphs);
 };
 

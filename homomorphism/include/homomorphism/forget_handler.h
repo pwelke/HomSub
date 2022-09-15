@@ -7,10 +7,10 @@
 
 class ForgetHandler {
 public:
-    ForgetHandler(size_t n, size_t k) : size_(BagSizes(n, k)) { }
-    virtual std::vector<size_t>& forget(std::vector<size_t>& input, std::vector<size_t>& output, size_t b, size_t idx) = 0;
+    ForgetHandler(std::size_t n, std::size_t k) : size_(BagSizes(n, k)) { }
+    virtual std::vector<std::size_t>& forget(std::vector<std::size_t>& input, std::vector<std::size_t>& output, std::size_t b, std::size_t idx) = 0;
 
-    void SetSizes(size_t n, size_t k) {
+    void SetSizes(std::size_t n, std::size_t k) {
         size_ = BagSizes(n, k);
     }
 protected:

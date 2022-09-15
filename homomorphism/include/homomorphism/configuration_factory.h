@@ -8,27 +8,27 @@
 
 class ConfigurationFactory {
 public:
-    static HomomorphismSettings defaultSettings(size_t n, size_t maxWidth);
-    static HomomorphismSettings PrecomputedSettings(size_t n, size_t maxWidth,
+    static HomomorphismSettings defaultSettings(std::size_t n, std::size_t maxWidth);
+    static HomomorphismSettings PrecomputedSettings(std::size_t n, std::size_t maxWidth,
                                                     std::shared_ptr<EdgeConsistencyPrecomputation> precomputation);
-    static HomomorphismSettings iteratorRemapper(size_t n, size_t maxWidth);
-    static PathdecompotisionSettings DefaultPathSettings(size_t n, size_t maxWidth);
-    static PathdecompotisionSettings PrecomputedPathSettings(size_t n, size_t maxWidth,
+    static HomomorphismSettings iteratorRemapper(std::size_t n, std::size_t maxWidth);
+    static PathdecompotisionSettings DefaultPathSettings(std::size_t n, std::size_t maxWidth);
+    static PathdecompotisionSettings PrecomputedPathSettings(std::size_t n, std::size_t maxWidth,
                                                         std::shared_ptr<EdgeConsistencyPrecomputation> precomputation);
-    static PathdecompotisionSettings PrecomputedPathSettingsNonpooled(size_t n, size_t maxWidth,
+    static PathdecompotisionSettings PrecomputedPathSettingsNonpooled(std::size_t n, std::size_t maxWidth,
                                                              std::shared_ptr<EdgeConsistencyPrecomputation> precomputation);
-    static DynamicProgrammingSettings DefaultDynamicSettings(size_t n, size_t maxWidth,
+    static DynamicProgrammingSettings DefaultDynamicSettings(std::size_t n, std::size_t maxWidth,
                                              std::shared_ptr<EdgeConsistencyPrecomputation> precomputationLeast,
                                              std::shared_ptr<EdgeConsistencyPrecomputation> precomputationSecond);
-    static DynamicProgrammingSettings DynamicSettingsNonpooled(size_t n, size_t maxWidth,
+    static DynamicProgrammingSettings DynamicSettingsNonpooled(std::size_t n, std::size_t maxWidth,
                                                              std::shared_ptr<EdgeConsistencyPrecomputation> precomputationLeast,
                                                              std::shared_ptr<EdgeConsistencyPrecomputation> precomputationSecond);
     static std::pair<DynamicProgrammingSettings, PathdecompotisionSettings>
-                                DefaultPrecomputedSettings(size_t n, size_t maxWidth,
+                                DefaultPrecomputedSettings(std::size_t n, std::size_t maxWidth,
                                                              std::shared_ptr<EdgeConsistencyPrecomputation> precomputationLeast,
                                                              std::shared_ptr<EdgeConsistencyPrecomputation> precomputationSecond);
     static std::pair<DynamicProgrammingSettings, PathdecompotisionSettings>
-                                NonpoolingPrecomputedSettings(size_t n, size_t maxWidth,
+                                NonpoolingPrecomputedSettings(std::size_t n, std::size_t maxWidth,
                                                            std::shared_ptr<EdgeConsistencyPrecomputation> precomputationLeast,
                                                            std::shared_ptr<EdgeConsistencyPrecomputation> precomputationSecond);
 };

@@ -8,7 +8,7 @@
 class EmbeddingCounter
 {
 public:
-    virtual size_t compute() = 0;
+    virtual std::size_t compute() = 0;
 };
 
 #endif

@@ -9,11 +9,11 @@
 // n is the number of vertices of G and b is the size of the bag
 class Remapper {
 public:
-    virtual void SetSizes(size_t n, size_t b) = 0;
+    virtual void SetSizes(std::size_t n, std::size_t b) = 0;
     // Moves the vertex from pos to the last position
-    virtual void Extract(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos) = 0;
+    virtual void Extract(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos) = 0;
     // Moves the vertex from the last position to pos
-    virtual void Insert(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos) = 0;
+    virtual void Insert(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos) = 0;
 };
 
 #endif

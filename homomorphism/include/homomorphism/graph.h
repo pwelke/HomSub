@@ -9,21 +9,21 @@
 class Graph
 {
 public:
-    virtual size_t vertCount() = 0;
-    virtual size_t edgeCount() = 0;
-    virtual void addEdge(size_t u, size_t v) = 0;
-    virtual bool edgeExist(size_t u, size_t v) = 0;
-    virtual std::unordered_set<size_t> getNeighbourhood(size_t v) = 0;
+    virtual std::size_t vertCount() = 0;
+    virtual std::size_t edgeCount() = 0;
+    virtual void addEdge(std::size_t u, std::size_t v) = 0;
+    virtual bool edgeExist(std::size_t u, std::size_t v) = 0;
+    virtual std::unordered_set<std::size_t> getNeighbourhood(std::size_t v) = 0;
     virtual bool isIsomorphic(std::shared_ptr<Graph> g) = 0;
-    virtual std::shared_ptr<Graph> partition(std::set<size_t>* parts, size_t size) = 0;
-    virtual void clear(size_t v) = 0;
+    virtual std::shared_ptr<Graph> partition(std::set<std::size_t>* parts, std::size_t size) = 0;
+    virtual void clear(std::size_t v) = 0;
     virtual std::string toNautyFormat();
     
     std::string toString();
     std::string toGr();
     std::string toGraph6(bool includeG);
     void prettyPrint(std::ostream& os);
-    std::string partitionNauty(std::set<size_t>* parts, size_t size);
+    std::string partitionNauty(std::set<std::size_t>* parts, std::size_t size);
 };
 
 #endif

@@ -8,7 +8,7 @@
 class VectorAllocatorPooling : public VectorAllocator {
 public:
     VectorAllocatorPooling(BagSizes size) : VectorAllocator(size),
-        pool_(std::vector<std::vector<std::vector<size_t>*>>(size.k + 2)) {};
+        pool_(std::vector<std::vector<std::vector<std::size_t>*>>(size.k + 2)) {};
     ~VectorAllocatorPooling() {
         for(auto & pool : pool_) {
             for(auto & state : pool) {
@@ -16,10 +16,10 @@ public:
             }
         }
     };
-    std::vector<size_t>* Allocate(size_t b) override;
-    void Free(std::vector<size_t> *vector, size_t bagSize) override;
+    std::vector<std::size_t>* Allocate(std::size_t b) override;
+    void Free(std::vector<std::size_t> *vector, std::size_t bagSize) override;
 private:
-    std::vector<std::vector<std::vector<size_t>*>> pool_;
+    std::vector<std::vector<std::vector<std::size_t>*>> pool_;
 };
 
 #endif

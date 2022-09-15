@@ -8,9 +8,9 @@
 
 class IntroduceHandler {
 public:
-    IntroduceHandler(size_t n, size_t k) : size_(BagSizes(n, k)) { }
-    virtual std::vector<size_t>& Introduce(std::vector<size_t> &input, std::vector<size_t> &output,
-                                                   std::vector<unsigned char>& bag, size_t x, size_t idx) = 0;
+    IntroduceHandler(std::size_t n, std::size_t k) : size_(BagSizes(n, k)) { }
+    virtual std::vector<std::size_t>& Introduce(std::vector<std::size_t> &input, std::vector<std::size_t> &output,
+                                                   std::vector<unsigned char>& bag, std::size_t x, std::size_t idx) = 0;
 protected:
     BagSizes size_;
 };

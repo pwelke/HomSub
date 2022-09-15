@@ -16,7 +16,7 @@ struct SpasmEntry
 struct NautyEntry
 {
     std::string graph;
-    size_t n;
+    std::size_t n;
     int coefficient;
     bool operator<(const NautyEntry& rhs) const {
         return graph < rhs.graph;

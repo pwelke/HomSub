@@ -5,8 +5,8 @@
 
 class ForgetHandlerFirst : public ForgetHandler {
 public:
-    ForgetHandlerFirst(size_t n, size_t k) : ForgetHandler(n, k) {}
-    std::vector<size_t>& forget(std::vector<size_t>& input, std::vector<size_t>& output, size_t b, size_t idx) override;
+    ForgetHandlerFirst(std::size_t n, std::size_t k) : ForgetHandler(n, k) {}
+    std::vector<std::size_t>& forget(std::vector<std::size_t>& input, std::vector<std::size_t>& output, std::size_t b, std::size_t idx) override;
 };
 
 #endif

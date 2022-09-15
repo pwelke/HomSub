@@ -14,7 +14,7 @@ public:
     static std::shared_ptr<EdgeConsistencyPrecomputation> InitializeLeast(std::shared_ptr<Graph> g, int maxEdges);
     static std::shared_ptr<EdgeConsistencyPrecomputation> InitializeSecond(std::shared_ptr<Graph> g, int maxEdges);
 
-    std::vector<unsigned char>::iterator GetIterator(size_t edges);
+    std::vector<unsigned char>::iterator GetIterator(std::size_t edges);
 private:
     std::vector<std::vector<unsigned char>> storage_;
 };

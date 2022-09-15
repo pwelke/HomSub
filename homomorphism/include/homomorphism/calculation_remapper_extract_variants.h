@@ -5,16 +5,16 @@
 
 class CalculationRemapperExtractVarients {
 public:
-    void SetSizes(size_t n, size_t b);
-    void ExtractXYZ(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos);
-    void ExtractXZY(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos);
-    void ExtractYXZ(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos);
-    void ExtractYZX(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos);
-    void ExtractZXY(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos);
-    void ExtractZYX(std::vector<size_t>& in, std::vector<size_t>& out, size_t pos);
+    void SetSizes(std::size_t n, std::size_t b);
+    void ExtractXYZ(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos);
+    void ExtractXZY(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos);
+    void ExtractYXZ(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos);
+    void ExtractYZX(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos);
+    void ExtractZXY(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos);
+    void ExtractZYX(std::vector<std::size_t>& in, std::vector<std::size_t>& out, std::size_t pos);
 private:
-    size_t n_, b_;
-    std::vector<size_t> powers_;
+    std::size_t n_, b_;
+    std::vector<std::size_t> powers_;
 };
 
 #endif

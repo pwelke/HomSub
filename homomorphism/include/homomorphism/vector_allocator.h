@@ -8,8 +8,8 @@
 class VectorAllocator {
 public:
     VectorAllocator(BagSizes size) : size_(size) {};
-    virtual std::vector<size_t>* Allocate(size_t b) = 0;
-    virtual void Free(std::vector<size_t> *vector, size_t bagSize) = 0;
+    virtual std::vector<std::size_t>* Allocate(std::size_t b) = 0;
+    virtual void Free(std::vector<std::size_t> *vector, std::size_t bagSize) = 0;
 protected:
     BagSizes size_;
 };

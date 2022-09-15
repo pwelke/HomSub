@@ -6,8 +6,8 @@
 class VectorAllocatorDefault : public VectorAllocator {
 public:
     VectorAllocatorDefault(BagSizes size) : VectorAllocator(size) {};
-    std::vector<size_t>* Allocate(size_t b) override;
-    void Free(std::vector<size_t> *vector, size_t bagSize) override;
+    std::vector<std::size_t>* Allocate(std::size_t b) override;
+    void Free(std::vector<std::size_t> *vector, std::size_t bagSize) override;
 };
 
 #endif

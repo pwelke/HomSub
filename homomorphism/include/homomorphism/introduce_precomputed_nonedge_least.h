@@ -7,10 +7,10 @@
 
 class IntroducePrecomputedNonedgeLeast : IntroduceHandler{
 public:
-    IntroducePrecomputedNonedgeLeast(size_t n, size_t k, std::shared_ptr<EdgeConsistencyPrecomputation> precomputed) :
+    IntroducePrecomputedNonedgeLeast(std::size_t n, std::size_t k, std::shared_ptr<EdgeConsistencyPrecomputation> precomputed) :
             IntroduceHandler(n, k), precomputed_(std::move(precomputed)) {};
-    std::vector<size_t>& Introduce(std::vector<size_t> &input, std::vector<size_t> &output,
-                                   std::vector<unsigned char>& bag, size_t x, size_t idx) override;
+    std::vector<std::size_t>& Introduce(std::vector<std::size_t> &input, std::vector<std::size_t> &output,
+                                   std::vector<unsigned char>& bag, std::size_t x, std::size_t idx) override;
 private:
     std::shared_ptr<EdgeConsistencyPrecomputation> precomputed_;
 };

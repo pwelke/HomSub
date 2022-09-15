@@ -9,8 +9,8 @@ public:
     static bool hasPrefix(const std::string& str, const std::string& prefix);
     static bool hasSuffix(const std::string& str, const std::string& suffix);
     static bool saveToFile(const std::string& str, const std::string& filename);
-    static std::string trimDreadnautOutput(std::ifstream& output, size_t n);
-    static size_t pow(size_t n, size_t k);
+    static std::string trimDreadnautOutput(std::ifstream& output, std::size_t n);
+    static std::size_t pow(std::size_t n, std::size_t k);
 };
 
 #endif
