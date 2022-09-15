@@ -18,21 +18,23 @@ std::vector<std::shared_ptr<TreeDecomposition>> TamakiRunner::decomposeAll(std::
 {
     std::ostringstream str;
 
-    for(auto& g : graphs) {
-        str << g->toGr();
-    }
+    // We don't compute the tree decomposition, we write it externally to tam.out.
 
-    //TODO: Use tmp files
-    std::ofstream in;
-    in.open("tam.in");
-    in << str.str();
-    in.close();
+    // for(auto& g : graphs) {
+    //     str << g->toGr();
+    // }
 
-    std::string path = ThirdParty::directory() + "tamaki";
-    std::string command = "java -cp " + path + " TamakiRunner < tam.in > tam.out";
-    system(command.c_str());
+    // //TODO: Use tmp files
+    // std::ofstream in;
+    // in.open("tam.in");
+    // in << str.str();
+    // in.close();
 
-    remove("tam.in");
+    // std::string path = ThirdParty::directory() + "tamaki";
+    // std::string command = "java -cp " + path + " TamakiRunner < tam.in > tam.out";
+    // system(command.c_str());
+
+    // remove("tam.in");
 
     std::string line;
     std::ifstream output("tam.out");
