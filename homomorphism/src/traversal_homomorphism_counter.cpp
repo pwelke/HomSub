@@ -26,13 +26,13 @@ bool TraversalHomomorphismCounter::CheckHomomorphism(std::shared_ptr<EdgeSetGrap
     return true;
 }
 
-long TraversalHomomorphismCounter::Count(std::shared_ptr<EdgeSetGraph> h, std::shared_ptr<EdgeSetGraph> g) {
-    long result = TestKTraversals(h, g, GetFirstTraversal(h), std::vector<std::size_t>());
+int64_t TraversalHomomorphismCounter::Count(std::shared_ptr<EdgeSetGraph> h, std::shared_ptr<EdgeSetGraph> g) {
+    int64_t result = TestKTraversals(h, g, GetFirstTraversal(h), std::vector<std::size_t>());
     
     return result;
 }
 
-long TraversalHomomorphismCounter::TestKTraversals(std::shared_ptr<EdgeSetGraph> h, std::shared_ptr<EdgeSetGraph> g, std::vector<std::size_t> hTraversal, std::vector<std::size_t> gTraversal)
+int64_t TraversalHomomorphismCounter::TestKTraversals(std::shared_ptr<EdgeSetGraph> h, std::shared_ptr<EdgeSetGraph> g, std::vector<std::size_t> hTraversal, std::vector<std::size_t> gTraversal)
 {
     //These choices contain the open neighbourhood
     std::unordered_set<std::size_t> choices;
@@ -52,7 +52,7 @@ long TraversalHomomorphismCounter::TestKTraversals(std::shared_ptr<EdgeSetGraph>
     }
     
     //try each available choice
-    long result = 0;
+    int64_t result = 0;
     for(std::size_t choice : choices) {
         std::vector<std::size_t> withChoice = gTraversal;
         withChoice.push_back(choice);
